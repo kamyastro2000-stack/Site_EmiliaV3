@@ -4,20 +4,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system — "Nuit profonde et or discret"
- * Fond nuit, texte ivoire, accent or chaud. Aucune couleur en dur dans les composants.
- */
-
+/* Violet en mouvement, blanc lumineux, noir de cinéma et or chaud. */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
   --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-intro: "Bebas Neue", Impact, sans-serif;
   --font-sans: "Karla", system-ui, sans-serif;
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -37,144 +32,91 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  --shadow-film: 0 24px 60px -24px oklch(0 0 0 / 0.85);
-  --shadow-glow: 0 0 60px -10px oklch(0.78 0.11 78 / 0.35);
+  --shadow-film: 0 20px 45px -15px oklch(0.15 0.05 300 / 0.26);
+  --shadow-glow: 0 0 35px oklch(0.78 0.12 80 / 0.3);
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.14 0.008 260);
-  --foreground: oklch(0.95 0.008 85);
-  --card: oklch(0.18 0.008 260);
-  --card-foreground: oklch(0.95 0.008 85);
-  --popover: oklch(0.16 0.008 260);
-  --popover-foreground: oklch(0.95 0.008 85);
-  --primary: oklch(0.78 0.11 78);
-  --primary-foreground: oklch(0.14 0.008 260);
-  --secondary: oklch(0.24 0.01 260);
-  --secondary-foreground: oklch(0.95 0.008 85);
-  --muted: oklch(0.24 0.01 260);
-  --muted-foreground: oklch(0.68 0.015 85);
-  --accent: oklch(0.82 0.1 82);
-  --accent-foreground: oklch(0.14 0.008 260);
+  --radius: 0.125rem;
+  --background: oklch(0.96 0.012 315);
+  --foreground: oklch(0.17 0.04 310);
+  --card: oklch(0.99 0.006 310);
+  --card-foreground: oklch(0.17 0.04 310);
+  --popover: oklch(0.99 0.006 310);
+  --popover-foreground: oklch(0.17 0.04 310);
+  --primary: oklch(0.69 0.13 81);
+  --primary-foreground: oklch(0.15 0.025 305);
+  --secondary: oklch(0.25 0.085 305);
+  --secondary-foreground: oklch(0.98 0.005 310);
+  --muted: oklch(0.91 0.025 310);
+  --muted-foreground: oklch(0.43 0.045 310);
+  --accent: oklch(0.83 0.1 83);
+  --accent-foreground: oklch(0.16 0.035 310);
   --destructive: oklch(0.58 0.2 27);
-  --destructive-foreground: oklch(0.97 0.005 85);
-  --border: oklch(0.95 0.008 85 / 12%);
-  --input: oklch(0.95 0.008 85 / 16%);
-  --ring: oklch(0.78 0.11 78 / 45%);
+  --destructive-foreground: oklch(0.98 0.005 85);
+  --border: oklch(0.46 0.09 310 / 22%);
+  --input: oklch(0.46 0.09 310 / 22%);
+  --ring: oklch(0.69 0.13 81);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-display);
-    font-weight: 300;
-  }
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
 }
 
-/* Générique cinéma : le nom s'installe, puis la lumière passe dessus */
-@keyframes title-settle {
-  0% {
-    opacity: 0;
-    letter-spacing: 0.6em;
-    transform: scale(1.18);
-    filter: blur(14px);
-  }
-  55% {
-    opacity: 1;
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    letter-spacing: 0.22em;
-    transform: scale(1);
-    filter: blur(0);
-  }
-}
+.intro-screen { background: radial-gradient(ellipse at 52% 48%, oklch(0.37 0.16 306), oklch(0.24 0.095 304) 48%, oklch(0.13 0.035 300) 100%); color: oklch(0.98 0.005 90); }
+.intro-film { opacity: .36; background: repeating-linear-gradient(103deg, transparent 0 46px, oklch(0.8 0.12 82 / .08) 48px, transparent 50px 112px); animation: film-shift 8s linear infinite; }
+.intro-beam { background: linear-gradient(110deg, transparent 25%, oklch(0.96 0.14 85 / .07) 45%, oklch(0.99 0.01 90 / .21) 50%, oklch(0.96 0.14 85 / .06) 55%, transparent 75%); transform: translateX(-110%) skewX(-15deg); animation: beam-pass 3.8s cubic-bezier(.3,0,.45,1) .65s both; }
+.intro-frame { border: 1px solid oklch(0.8 0.12 82 / .4); box-shadow: inset 0 0 80px oklch(0.12 0.03 300 / .3); animation: frame-appear 1.3s ease both; }
+.intro-mark { filter: drop-shadow(0 10px 18px oklch(0.1 0.03 300 / .55)); }
+.intro-name { text-shadow: 0 2px 0 oklch(0.7 0.11 80), 0 5px 0 oklch(0.34 0.07 76), 0 10px 16px oklch(0.1 0.03 300 / .7); animation: name-reveal 2.5s cubic-bezier(.16,1,.3,1) both; }
+.intro-echo { transform: translate(7px, 11px); opacity: .45; filter: blur(11px); animation: echo-appear 2.5s ease both; }
+.intro-kicker { animation: rise-in .7s ease .25s both; }
+.intro-line { transform-origin: center; animation: line-expand 1s ease 1.4s both; }
+.intro-subtitle { animation: rise-in 1s ease 1.9s both; }
+.intro-enter { animation: rise-in .8s ease 2.5s both, gentle-pulse 3.5s ease-in-out 3.3s infinite; }
+.intro-bottom { animation: rise-in .8s ease 2.8s both; }
 
-@keyframes sheen {
-  0% {
-    background-position: -140% 0;
-  }
-  100% {
-    background-position: 240% 0;
-  }
-}
+.hero-scene { background: oklch(0.24 0.11 303); color: oklch(0.98 0.005 90); }
+.hero-video { opacity: .88; animation: hero-breathe 20s ease-in-out infinite alternate; }
+.hero-tint { background: linear-gradient(90deg, oklch(0.19 0.075 309 / .85), oklch(0.31 0.12 310 / .4) 54%, oklch(0.14 0.04 305 / .16)), linear-gradient(0deg, oklch(0.12 0.045 305 / .86), transparent 70%); }
+.hero-wash { background: linear-gradient(110deg, transparent 25%, oklch(0.7 0.12 80 / .14) 47%, transparent 67%); background-size: 230% 100%; animation: wash-drift 13s ease-in-out infinite alternate; }
+.hero-heading { text-shadow: 0 12px 30px oklch(0.12 0.03 310 / .4); animation: rise-in 1.2s ease both; }
+.hero-scroll { animation: float-vertical 2.6s ease-in-out infinite; }
+.marquee-track { animation: marquee 25s linear infinite; }
+.light-scene { background: linear-gradient(135deg, oklch(0.985 0.006 315), oklch(0.935 0.036 315) 55%, oklch(0.975 0.015 88)); }
+.scene-lines { opacity: .3; background-image: linear-gradient(90deg, oklch(0.64 0.1 310 / .18) 1px, transparent 1px); background-size: 120px 100%; animation: film-shift 35s linear infinite; }
+.photo-tile { break-inside: avoid; }
+.purple-scene { background: linear-gradient(135deg, oklch(0.27 0.12 305), oklch(0.37 0.15 313) 48%, oklch(0.24 0.085 295)); color: oklch(0.98 0.005 90); }
+.purple-scene .text-foreground { color: oklch(0.98 0.005 90); }
+.purple-scene .text-muted-foreground { color: oklch(0.83 0.035 90); }
+.purple-light { background: repeating-linear-gradient(115deg, transparent 0 19%, oklch(0.97 0.02 90 / .035) 20%, transparent 21% 40%); background-size: 180% 100%; animation: wash-drift 18s ease-in-out infinite alternate; }
+.words-scene { background: linear-gradient(160deg, oklch(0.995 0.004 80), oklch(0.96 0.025 310) 62%, oklch(0.97 0.015 80)); }
+.words-light { background: linear-gradient(110deg, transparent 35%, oklch(0.81 0.10 80 / .14) 50%, transparent 65%); background-size: 220% 100%; animation: wash-drift 14s ease-in-out infinite alternate; }
+.final-scene { background: linear-gradient(140deg, oklch(0.17 0.055 300), oklch(0.39 0.16 312) 52%, oklch(0.2 0.065 307)); color: oklch(0.98 0.005 90); }
+.final-scene .text-foreground { color: oklch(0.98 0.005 90); }
+.final-shimmer { background: repeating-linear-gradient(105deg, transparent 0 16%, oklch(0.82 0.12 80 / .06) 17%, transparent 18% 34%); background-size: 180% 100%; animation: wash-drift 13s ease-in-out infinite alternate; }
 
-@keyframes rule-grow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
+@keyframes name-reveal { 0% { opacity: 0; transform: scale(1.75) rotateX(16deg); filter: blur(18px); } 55% { opacity: 1; filter: blur(0); } 100% { opacity: 1; transform: scale(1) rotateX(0); filter: blur(0); } }
+@keyframes echo-appear { 0% { opacity: 0; transform: translate(0, 0) scale(1.6); } 100% { opacity: .45; transform: translate(7px, 11px) scale(1); } }
+@keyframes beam-pass { to { transform: translateX(110%) skewX(-15deg); } }
+@keyframes frame-appear { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
+@keyframes line-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes gentle-pulse { 50% { box-shadow: 0 0 42px oklch(0.78 0.12 80 / .45); } }
+@keyframes film-shift { to { background-position: 400px 0; } }
+@keyframes hero-breathe { to { transform: scale(1.07); } }
+@keyframes wash-drift { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes float-vertical { 50% { transform: translateY(7px); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
-@keyframes curtain-out {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@utility title-cinema {
-  animation: title-settle 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@utility title-sheen {
-  background-image: linear-gradient(
-    100deg,
-    var(--color-foreground) 38%,
-    var(--color-primary) 50%,
-    var(--color-foreground) 62%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: sheen 3.2s ease-in-out 1.1s both;
-}
-
-@utility rule-grow {
-  animation: rule-grow 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
-  transform-origin: center;
-}
-
-@utility curtain-out {
-  animation: curtain-out 1.1s ease 3.4s forwards;
-}
-
-/* Apparition au défilement, sobre */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity .85s ease, transform .85s cubic-bezier(.16,1,.3,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .intro-name, .intro-echo, .intro-kicker, .intro-subtitle, .intro-enter, .intro-bottom { opacity: 1; filter: none; transform: none; }
 }
