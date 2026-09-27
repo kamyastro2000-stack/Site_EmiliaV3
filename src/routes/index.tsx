@@ -43,6 +43,7 @@ function Index() {
       return () => { document.body.style.overflow = ""; };
     }
     document.body.style.overflow = "";
+    return undefined;
   }, [entered]);
 
   const enter = useCallback(() => {
