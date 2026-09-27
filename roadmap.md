@@ -1,0 +1,4 @@
+- [x] Éclaircir le site et créer un fond violet animé avec accents blancs, noirs et dorés.
+- [x] Créer un générique d'entrée cinématique Jade Emilia et lancer la musique au clic.
+- [ ] Vérifier l'expérience sur téléphone et ordinateur.
+- [ ] Synchroniser sur GitHub si un accès GitHub adapté est disponible ; sinon expliquer le blocage.
