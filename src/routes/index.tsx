@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
-import { IMAGES, VIDEOS, MUSIC } from "@/data/media";
+import { IMAGES, VIDEOS } from "@/data/media";
 import { Lightbox } from "@/components/Lightbox";
 import { VideoTile } from "@/components/VideoTile";
 import { Button } from "@/components/ui/button";
