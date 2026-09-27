@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   items: string[];
@@ -29,26 +30,26 @@ export function Lightbox({ items, index, kind, onClose, onNav }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 p-4 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-secondary/95 p-4 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
     >
-      <button
+      <Button variant="ghost" size="icon"
         aria-label="Fermer"
         onClick={onClose}
-        className="absolute right-5 top-5 text-2xl leading-none text-muted-foreground transition-colors hover:text-accent"
+        className="absolute right-5 top-5 z-10 size-12 rounded-none text-2xl leading-none text-secondary-foreground transition-colors hover:text-primary"
       >
         ×
-      </button>
-      <button
+      </Button>
+      <Button variant="ghost" size="icon"
         aria-label="Précédent"
         onClick={(e) => {
           e.stopPropagation();
           onNav((index - 1 + items.length) % items.length);
         }}
-        className="absolute left-3 text-3xl text-muted-foreground transition-colors hover:text-accent sm:left-8"
+        className="absolute left-3 z-10 size-12 rounded-none bg-secondary/60 text-3xl text-secondary-foreground transition-colors hover:text-primary sm:left-8"
       >
         ‹
-      </button>
+      </Button>
       <div className="max-h-[85vh] w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         {kind === "image" ? (
           <img
@@ -66,17 +67,17 @@ export function Lightbox({ items, index, kind, onClose, onNav }: Props) {
           />
         )}
       </div>
-      <button
+      <Button variant="ghost" size="icon"
         aria-label="Suivant"
         onClick={(e) => {
           e.stopPropagation();
           onNav((index + 1) % items.length);
         }}
-        className="absolute right-3 text-3xl text-muted-foreground transition-colors hover:text-accent sm:right-8"
+        className="absolute right-3 z-10 size-12 rounded-none bg-secondary/60 text-3xl text-secondary-foreground transition-colors hover:text-primary sm:right-8"
       >
         ›
-      </button>
-      <span className="absolute bottom-6 font-sans text-xs tracking-[0.3em] text-muted-foreground">
+      </Button>
+      <span className="absolute bottom-6 font-sans text-xs tracking-[0.3em] text-secondary-foreground">
         {index + 1} / {items.length}
       </span>
     </div>

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 /** Vignette vidéo : ne charge la vidéo que lorsqu'elle approche de l'écran. */
 export function VideoTile({
@@ -30,10 +32,11 @@ export function VideoTile({
   }, []);
 
   return (
-    <button
+    <Button
+      variant="ghost"
       ref={ref}
       onClick={onOpen}
-      className="group relative block aspect-[9/16] w-full overflow-hidden rounded-sm bg-secondary shadow-film"
+      className="group relative block aspect-[9/16] h-auto w-full overflow-hidden rounded-none bg-secondary p-0 shadow-film"
       aria-label={`Lire la séquence ${label}`}
     >
       {visible ? (
@@ -42,13 +45,14 @@ export function VideoTile({
           preload="metadata"
           muted
           playsInline
-          className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-[1.03] group-hover:opacity-100"
+          className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.05] group-hover:opacity-100"
         />
       ) : null}
-      <span className="pointer-events-none absolute inset-0 bg-background/30 transition-opacity duration-500 group-hover:opacity-0" />
-      <span className="pointer-events-none absolute bottom-3 left-3 font-sans text-[10px] tracking-[0.3em] text-foreground/80">
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-secondary/70 via-transparent to-transparent" />
+      <span className="pointer-events-none absolute inset-0 flex items-center justify-center"><Play className="size-10 fill-primary/70 text-primary drop-shadow-lg transition-transform duration-300 group-hover:scale-125" /></span>
+      <span className="pointer-events-none absolute bottom-3 left-3 font-sans text-[10px] tracking-[0.3em] text-secondary-foreground">
         {label}
       </span>
-    </button>
+    </Button>
   );
 }

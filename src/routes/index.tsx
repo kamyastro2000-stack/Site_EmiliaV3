@@ -1,11 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight, Pause, Play, Volume2, VolumeX } from "lucide-react";
-import { IMAGES, VIDEOS, MUSIC } from "@/data/media";
+import { ArrowDown, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
+import { IMAGES, VIDEOS } from "@/data/media";
 import { Lightbox } from "@/components/Lightbox";
 import { VideoTile } from "@/components/VideoTile";
 import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/useReveal";
+import heroFrame from "@/assets/hero-frame.asset.json";
+import heroMedia from "@/assets/hero.asset.json";
+import musicMedia from "@/assets/music.asset.json";
+import heroWebm from "@/assets/hero-webm.asset.json";
+import musicWebm from "@/assets/music-webm.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,6 +48,7 @@ function Index() {
       return () => { document.body.style.overflow = ""; };
     }
     document.body.style.overflow = "";
+    return undefined;
   }, [entered]);
 
   const enter = useCallback(() => {
@@ -68,7 +74,10 @@ function Index() {
 
   return (
     <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
-      <video ref={audioRef} src={MUSIC} loop playsInline className="hidden" />
+      <video ref={audioRef} loop playsInline preload="auto" className="hidden">
+        <source src={musicWebm.url} type="audio/webm" />
+        <source src={musicMedia.url} type="video/mp4" />
+      </video>
 
       {!entered && (
         <div className="intro-screen fixed inset-0 z-[60] flex items-center justify-center overflow-hidden" aria-label="Ouverture de Jade Emilia">
@@ -92,7 +101,11 @@ function Index() {
       )}
 
       <section className="hero-scene relative flex min-h-[85svh] items-end overflow-hidden px-6 pb-16 pt-20 sm:min-h-[90svh] sm:px-12 sm:pb-20 lg:px-20">
-        <video src={VIDEOS[0]} autoPlay muted loop playsInline preload="metadata" className="hero-video absolute inset-0 h-full w-full object-cover" />
+        <img src={heroFrame.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <video poster={heroFrame.url} autoPlay muted loop playsInline preload="auto" className="hero-video absolute inset-0 h-full w-full object-cover">
+          <source src={heroWebm.url} type="video/webm" />
+          <source src={heroMedia.url} type="video/mp4" />
+        </video>
         <div className="hero-tint absolute inset-0" />
         <div className="hero-wash absolute inset-0" />
         <div className="hero-edge absolute left-0 top-0 h-full w-1 bg-primary" />
