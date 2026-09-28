@@ -1,4 +1,4 @@
 - [x] Éclaircir le site et créer un fond violet animé avec accents blancs, noirs et dorés.
 - [x] Créer un générique d'entrée cinématique Jade Emilia et lancer la musique au clic.
-- [ ] Vérifier l'expérience sur téléphone et ordinateur.
-- [ ] Synchroniser sur GitHub si un accès GitHub adapté est disponible ; sinon expliquer le blocage.
+- [x] Vérifier l'expérience sur téléphone et ordinateur : ouverture, musique, lecture vidéo, sections et absence de débordement testées.
+- [ ] Synchroniser sur GitHub : le dépôt d'origine est distinct du projet Lovable ; relier le projet depuis le menu GitHub de Lovable pour activer la synchronisation sans écraser le dépôt d'origine.
