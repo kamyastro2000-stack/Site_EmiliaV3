@@ -11,3 +11,4 @@
 
 - Keep the intimate Jade Emilia experience as a single page with a click-to-enter cinematic intro; browser audio needs that first gesture, and its original words and media remain unchanged.
 - Use semantic tokens in `src/styles.css` for the lavender-white, violet, gold, and cinematic-black visual system so all sections stay coordinated.
+- Keep opening video and music in project-hosted WebM with MP4 fallbacks and a still-image poster so the first experience remains playable across browsers.
